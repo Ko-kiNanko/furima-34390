@@ -25,13 +25,18 @@ Things you may want to cover:
 
 ## usersテーブル
 
-| Column     | Type       | Options      |
-| ---------- | ---------- | ------------ |
-| nickname   | string     | null: false  |
-| password   | string     | null: false  |
-| email      | string     | null: false  |
-| birth_day  | date       | null: false  |
-| full_name  | string     | null: false  |
+| Column               | Type       | Options                    |
+| -------------------- | ---------- | -------------------------- |
+| nickname             | string     | null: false                |
+| encrypted_password   | string     | null: false                |
+| email                | string     | null: false, unique: true  |
+| birth_day            | date       | null: false                |
+| last_name            | string     | null: false                |
+| first_name           | string     | null: false                |
+| last_name_kana       | string     | null: false                |
+| first_name_kana      | string     | null: false                |
+
+
 
 ### Association
 
@@ -40,16 +45,15 @@ Things you may want to cover:
 
 
 ## itemsテーブル
-| Column       | Type       | Options      |
-| ------------ | ---------- | ------------ |
-| item_name    | string     | null: false  |
-| category     | string     | null: false  |
-| price        | integer    | null: false  |
-| seller       | string     | null: false  |
-| item_status  | string     | null: false  |
-| area         | string     | null: false  |
-| delivery_fee | integer    | null: false  |
-| shipping_day | integer    | null: false  |
+| Column          | Type       | Options      |
+| --------------- | ---------- | ------------ |
+| item_name       | string     | null: false  |
+| category-id     | integer    | null: false  |
+| price           | integer    | null: false  |
+| item_status_id  | integer    | null: false  |
+| area-id         | integer    | null: false  |
+| delivery_fee_id | integer    | null: false  |
+| shipping_day_id | integer    | null: false  |
 
 ### Association
 
@@ -61,8 +65,8 @@ Things you may want to cover:
 
 | Column        | Type       | Options                         |
 | ------------- | ---------- | ------------------------------- |
-| buyer         | string     | null: false, foreign_key: true  |
-| card_status   | string     | null: false                     |
+| user          | references | null: false, foreign_key: true  |
+| item          | references | null: false, foreign_key: true  |
 
 ### Association
 
@@ -75,7 +79,12 @@ Things you may want to cover:
 
 | Column        | Type       | Options      |
 | ------------- | ---------- | ------------ |
+| post_number   | integer    | null: false  |
+| prefectures   | string     | null: false  |
+| municipality  | string     | null: false  |
 | address       | string     | null: false  |
+| building_name | string     | null: false  |
+| phone_number  | integer    | null: false  |
 
 ### Association
 
