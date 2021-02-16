@@ -48,10 +48,10 @@ Things you may want to cover:
 | Column          | Type       | Options      |
 | --------------- | ---------- | ------------ |
 | item_name       | string     | null: false  |
-| category-id     | integer    | null: false  |
+| category_id     | integer    | null: false  |
 | price           | integer    | null: false  |
 | item_status_id  | integer    | null: false  |
-| area-id         | integer    | null: false  |
+| area_id         | integer    | null: false  |
 | delivery_fee_id | integer    | null: false  |
 | shipping_day_id | integer    | null: false  |
 
@@ -77,15 +77,16 @@ Things you may want to cover:
 
 ## addressテーブル
 
-| Column        | Type       | Options      |
-| ------------- | ---------- | ------------ |
-| post_number   | integer    | null: false  |
-| prefectures   | string     | null: false  |
-| municipality  | string     | null: false  |
-| address       | string     | null: false  |
-| building_name | string     | null: false  |
-| phone_number  | integer    | null: false  |
+| Column        | Type       | Options                         |
+| ------------- | ---------- | ------------------------------- |
+| purchase      | references | null: false, foreign_key: true  |
+| post_number   | string     | null: false                     |
+| prefectures   | string     | null: false                     |
+| municipality  | string     | null: false                     |
+| address       | string     | null: false                     |
+| building_name | string     | null: false                     |
+| phone_number  | string     | null: false                     |
 
 ### Association
 
-- belongs_to :address
+- belongs_to :purchase
