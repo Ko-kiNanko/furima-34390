@@ -51,7 +51,8 @@ Things you may want to cover:
 | category_id     | integer    | null: false  |
 | price           | integer    | null: false  |
 | item_status_id  | integer    | null: false  |
-| area_id         | integer    | null: false  |
+| information     | text       | null: false  |
+| prefecture_id   | integer    | null: false  |
 | delivery_fee_id | integer    | null: false  |
 | shipping_day_id | integer    | null: false  |
 
@@ -72,19 +73,19 @@ Things you may want to cover:
 
 - belongs_to :user
 - belongs_to :item
-- has_one :address
+- has_one :details
 
 
-## addressテーブル
+## detailsテーブル
 
 | Column        | Type       | Options                         |
 | ------------- | ---------- | ------------------------------- |
 | purchase      | references | null: false, foreign_key: true  |
 | post_number   | string     | null: false                     |
-| prefectures   | string     | null: false                     |
+| prefecture_id | integer    | null: false                     |
 | municipality  | string     | null: false                     |
 | address       | string     | null: false                     |
-| building_name | string     | null: false                     |
+| building_name | string     |                                 |
 | phone_number  | string     | null: false                     |
 
 ### Association
