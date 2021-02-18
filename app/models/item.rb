@@ -1,21 +1,28 @@
 class Item < ApplicationRecord
-  
-  validates :item_name, null: false
-  validates :category_id, null: false
-  validates :price, null: false
-  validates :item_status_id, null: false
-  validates :information, null: false
-  validates :prefecture, null: false
-  validates :delivery_fee_id, null: false
-  validates :shipping_day_id, null: false
-  
+
+  with_options presence: true do
+    validates :item_name
+    validates :price, format: { with: /\A[-]?[0-9]+(\.[0-9]+)?\z/ }, numericality: {only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999}
+    validates :information
+  end
+
+  with_options numericality: { other_than: 1 } do
+    validates :prefecture_id
+    validates :delivery_fee_id
+    validates :shipping_day_id
+    validates :category_id
+    validates :item_status_id
+  end
+
+  validates :content, presence: true
+
   belongs_to :user
   has_one_attached :image
 
   extend ActiveHash::Associations::ActiveRecordExtensions
-  belongs_to :category
-  belongs_to :delivery_fee
-  belongs_to :item_status
-  belongs_to :prefecture
-  belongs_to :shipping_day
+    belongs_to :category
+    belongs_to :delivery_fee
+    belongs_to :item_status
+    belongs_to :prefecture
+    belongs_to :shipping_day
 end
