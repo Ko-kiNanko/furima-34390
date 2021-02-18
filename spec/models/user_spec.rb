@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
   before do
     @user = FactoryBot.build(:user)
-    # sleep 0.5
+    # sleep 0.5(処理多くなりエラーが発生する場合にコメントアウトを外す)
   end
   describe "ユーザー新規登録" do
 
@@ -30,7 +30,6 @@ RSpec.describe User, type: :model do
 
     context '新規登録がうまくいかない時' do
       it "nicknameが空だと登録できない" do
-        # user = User.new(nickname: "", email: "kkk@gmail.com", password: "g0000000", password_confirmation: "g0000000", last_name: "山田", first_name: "太郎", last_name_kana: "ヤマダ", first_name_kana: "タロウ", birth_day: "2000/01/01")
         @user.nickname = ""
         @user.valid?
         expect(@user.errors.full_messages).to include("Nickname can't be blank")
