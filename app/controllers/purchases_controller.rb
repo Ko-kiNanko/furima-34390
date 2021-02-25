@@ -12,7 +12,6 @@ before_action :authenticate_user!, expect: :index
   def create
     @item = Item.find(params[:item_id])
     @purchase_detail = PurchaseDetail.new(purchase_params)
-    binding.pry
     if @purchase_detail.valid?
       @purchase_detail.save
       redirect_to root_path
