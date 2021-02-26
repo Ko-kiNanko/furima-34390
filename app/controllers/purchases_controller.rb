@@ -1,6 +1,6 @@
 class PurchasesController < ApplicationController
 before_action :authenticate_user!, expect: :index
-
+before_action :buy_check, only: :index
   def index
     @purchase_detail = PurchaseDetail.new
     @item = Item.find(params[:item_id])
@@ -38,5 +38,11 @@ before_action :authenticate_user!, expect: :index
       card: purchase_params[:token],
       currency: 'jpy'
     )
+  end
+  def buy_check
+    @item = Item.find(params[:item_id])
+    if @item.purchase.present?
+      redirect_to root_path
+    end
   end
 end
