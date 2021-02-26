@@ -58,14 +58,18 @@ RSpec.describe PurchaseDetail, type: :model do
         @purchasedetail.valid?
         expect(@purchasedetail.errors.full_messages).to include("Phone number is invalid")
       end
+      it "クレジットカードの情報が空だと登録できない" do
+        @purchasedetail.token = nil
+        @purchasedetail.valid?
+        binding.pry
+        expect(@purchasedetail.errors.full_messages).to include("Token can't be blank")
+      end
+
     end
   end
 end
 
 
-# - クレジットカード決済ができること
-# - クレジットカードの情報は購入の都度入力させること
-# - クレジットカード情報は必須であり、正しいクレジットカードの情報で無いときは決済できないこと
 # - 売却済みの商品は、画像上に『sold out』の文字が表示されるようになっていること（商品一覧機能）
 # - 売却済みの商品は、画像上に『sold out』の文字が表示されるようになっていること（商品詳細機能）
 # - ログイン状態の出品者でも、売却済みの商品に対しては「編集・削除ボタン」が表示されないこと（商品詳細機能）

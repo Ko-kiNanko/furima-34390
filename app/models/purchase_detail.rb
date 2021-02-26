@@ -2,7 +2,7 @@ class PurchaseDetail
   include ActiveModel::Model
   extend ActiveHash::Associations::ActiveRecordExtensions
 
-  attr_accessor :user_id, :item_id, :post_number, :prefecture_id, :municipality, :address, :building_name, :phone_number
+  attr_accessor :user_id, :item_id, :post_number, :prefecture_id, :municipality, :address, :building_name, :phone_number, :token
   with_options presence: true do
     validates :user_id
     validates :item_id
@@ -10,6 +10,7 @@ class PurchaseDetail
     validates :municipality
     validates :address
     validates :phone_number, format: {with: /\A0[5789]0\d{4}\d{4}\z/}
+    validates :token
   end
   validates :prefecture_id, numericality: { other_than: 1 }
 
