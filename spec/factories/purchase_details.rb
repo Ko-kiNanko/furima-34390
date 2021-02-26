@@ -7,6 +7,7 @@ FactoryBot.define do
     municipality { '大阪府大阪市住之江区' }
     address { '1-1' }
     phone_number { '09012345678' }
+    building_name { 'gio大阪' }
     token {"tok_abcdefghijk00000000000000000"}
   end
 end

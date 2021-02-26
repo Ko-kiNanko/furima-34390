@@ -11,8 +11,8 @@ RSpec.describe PurchaseDetail, type: :model do
         it "必要な情報を適切に入力すると、商品の購入ができる" do
           expect(@purchasedetail).to be_valid
         end
-        it "電話番号が11桁だと登録できる" do
-          @purchasedetail.phone_number = "09012345678"
+        it "建物名がなくても登録できる" do
+          @purchasedetail.building_name = ""
           expect(@purchasedetail).to be_valid
         end
       end

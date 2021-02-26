@@ -2,12 +2,9 @@ class PurchasesController < ApplicationController
 before_action :authenticate_user!, expect: :index
 before_action :buy_check, only: :index
 before_action :item_params, only: [:index, :create]
-  
+before_action :move_to_root, only: [:index, :create]
   def index
     @purchase_detail = PurchaseDetail.new
-  end
-
-  def new
   end
 
   def create
