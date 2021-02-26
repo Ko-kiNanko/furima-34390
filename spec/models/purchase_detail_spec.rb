@@ -61,13 +61,10 @@ RSpec.describe PurchaseDetail, type: :model do
       it "クレジットカードの情報が空だと登録できない" do
         @purchasedetail.token = nil
         @purchasedetail.valid?
-        binding.pry
         expect(@purchasedetail.errors.full_messages).to include("Token can't be blank")
       end
-
     end
   end
 end
 
 
-# - ログイン状態の出品者であっても、URLを直接入力して自身の売却済み商品の商品情報編集ページへ遷移しようとすると、トップページに遷移すること（商品情報編集機能）
