@@ -2,9 +2,10 @@ require 'rails_helper'
 
 RSpec.describe PurchaseDetail, type: :model do
   before do
-    # @user = FactoryBot.build(:user)
-    # @item = FactoryBot.build(:item)
-    @purchasedetail = FactoryBot.build(:purchase_detail, item_id: 2, user_id: 3)
+    @user = FactoryBot.create(:user)
+    @item = FactoryBot.create(:item)
+    @purchasedetail = FactoryBot.build(:purchase_detail, item_id: @item.id, user_id: @user.id)
+    sleep 0.3
   end
     describe "商品購入機能" do
       context '商品登録がうまくいく時' do
@@ -62,6 +63,16 @@ RSpec.describe PurchaseDetail, type: :model do
         @purchasedetail.token = nil
         @purchasedetail.valid?
         expect(@purchasedetail.errors.full_messages).to include("Token can't be blank")
+      end
+      it "ユーザーのidが存在しない場合、購入できないこと" do
+        @purchasedetail.user_id = nil
+        @purchasedetail.valid?
+        expect(@purchasedetail.errors.full_messages).to include("User can't be blank")
+      end
+      it "商品のidが存在しない場合、購入できないこと" do
+        @purchasedetail.item_id = nil
+        @purchasedetail.valid?
+        expect(@purchasedetail.errors.full_messages).to include("Item can't be blank")
       end
     end
   end

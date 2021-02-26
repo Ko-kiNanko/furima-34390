@@ -1,7 +1,7 @@
 class PurchasesController < ApplicationController
 before_action :authenticate_user!, expect: :index
-before_action :buy_check, only: :index
 before_action :item_params, only: [:index, :create]
+before_action :buy_check, only: :index
 before_action :move_to_root, only: [:index, :create]
   def index
     @purchase_detail = PurchaseDetail.new
@@ -26,7 +26,6 @@ before_action :move_to_root, only: [:index, :create]
     @item = Item.find(params[:item_id])
   end
   def move_to_root
-    @item = Item.find(params[:item_id])
     unless @item.user.id == current_user.id
       redirect_to controller: :items, action: :index
     end
@@ -40,7 +39,6 @@ before_action :move_to_root, only: [:index, :create]
     )
   end
   def buy_check
-    @item = Item.find(params[:item_id])
     if @item.purchase.present?
       redirect_to root_path
     end
