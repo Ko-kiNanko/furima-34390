@@ -35,7 +35,7 @@ RSpec.describe PurchaseDetail, type: :model do
         expect(@purchasedetail.errors.full_messages).to include("Prefecture is not a number")
       end
       it "prefecture.idが1だと登録できない" do
-        @purchasedetail.prefecture_id = "1"
+        @purchasedetail.prefecture_id = 1
         @purchasedetail.valid?
         expect(@purchasedetail.errors.full_messages).to include("Prefecture must be other than 1")
       end
@@ -56,6 +56,11 @@ RSpec.describe PurchaseDetail, type: :model do
       end
       it "電話番号が11桁以外だと登録できない" do
         @purchasedetail.phone_number = "123456789012"
+        @purchasedetail.valid?
+        expect(@purchasedetail.errors.full_messages).to include("Phone number is invalid")
+      end
+      it "電話番号が英数字混合だと登録できない" do
+        @purchasedetail.phone_number = "1234567890a"
         @purchasedetail.valid?
         expect(@purchasedetail.errors.full_messages).to include("Phone number is invalid")
       end
