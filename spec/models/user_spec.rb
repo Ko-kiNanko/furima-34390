@@ -14,7 +14,6 @@ RSpec.describe User, type: :model do
       it "last_name,first_nameは全角（漢字・ひらがな・カタカナ）であれば登録できる" do
         @user.last_name = "松モと"
         @user.first_name = "仁志"
-        binding.pry
         expect(@user).to be_valid
       end
       it "last_name_kana,first_name_kanaは全角（カタカナ）であれば登録できる" do
