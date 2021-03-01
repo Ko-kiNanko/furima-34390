@@ -26,7 +26,7 @@ before_action :move_to_root, only: [:index, :create]
     @item = Item.find(params[:item_id])
   end
   def move_to_root
-    unless @item.user.id == current_user.id
+    if @item.user.id == current_user.id
       redirect_to controller: :items, action: :index
     end
   end
